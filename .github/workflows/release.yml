@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+permissions:
+  id-token: write
+  contents: read
 jobs:
   release:
     name: Release
@@ -22,6 +25,8 @@ jobs:
           npm install
           npm i --no-save @vercel/ncc semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/exec conventional-changelog-conventionalcommits
       - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
         run: |
           npx ncc build index.js
           npx semantic-release
