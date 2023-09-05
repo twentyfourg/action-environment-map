@@ -25,6 +25,6 @@ jobs:
         run: |
           npx ncc build index.js
           git add --force dist/
-          git commit -m'chore(release) distribution files [skip ci]
+          git commit -m'chore(release) distribution files [skip ci]'
           git push origin master
           npx semantic-release
