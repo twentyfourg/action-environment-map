@@ -61,13 +61,6 @@ module.exports = {
       },
     ],
     [
-      '@semantic-release/npm',
-      {
-        npmPublish: false,
-        tarballDir: '.',
-      },
-    ],
-    [
       '@semantic-release/git',
       {
         assets: ['dist', 'CHANGELOG.md', 'package.json', 'package-lock.json'],
