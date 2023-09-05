@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 module.exports = {
-  branches: ['prod'],
+  branches: ['master'],
   plugins: [
     [
       '@semantic-release/commit-analyzer',
