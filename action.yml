@@ -1,0 +1,18 @@
+name: "Hello World"
+description: "Greet someone and record the time"
+inputs:
+  regexReplaces: 
+    description: "Stringified array Javascript replace patterns."
+    required: false
+    default: '[["feature\/","dev-"],["release\/","qa-"]]'
+  environmentMap:
+    description: "Stringified object where the keys are branch names and the values is an array of environments to map to."
+    default: '{}'
+outputs:
+  environment: 
+    description: "The environment to deploy to based on the regex replacements."
+  environmentMatrix:
+    description: "Matrix containing mapped environments."
+runs:
+  using: "node16"
+  main: "dist/index.js"

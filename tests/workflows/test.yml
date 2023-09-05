@@ -1,0 +1,25 @@
+on: [push]
+
+jobs:
+  environment:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    outputs:
+      environmentMatrix: ${{ steps.environment.outputs.environmentMatrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Environment
+        uses: ./dist/
+        id: environment
+        with:
+          environmentMap: '{"dev-sso": ["prod", "dev"]}'
+  example_matrix:
+    needs: [environment]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ${{ fromJSON(needs.environment.outputs.environmentMatrix) }}
+    steps:
+      - name: test
+        run: echo ${{ matrix.environment }}

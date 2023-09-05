@@ -1,0 +1,30 @@
+name: Code Deployment
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: |
+          npm install
+          npm i --no-save @vercel/ncc semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/exec conventional-changelog-conventionalcommits
+      - name: Release
+        run: |
+          npx ncc build index.js
+          git add --force dist/
+          git commit -m'chore(release) distribution files [skip ci]
+          git push origin master
+          npx semantic-release
