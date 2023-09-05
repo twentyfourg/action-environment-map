@@ -24,9 +24,4 @@ jobs:
       - name: Release
         run: |
           npx ncc build index.js
-          git add --force dist/
-          git config --global user.name 'GitHub Release Bot'
-          git config --global user.email 'githubBot@users.noreply.github.com'
-          git commit -m'chore(release) distribution files [skip ci]'
-          git push origin master
           npx semantic-release
