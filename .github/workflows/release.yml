@@ -28,5 +28,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
         run: |
-          npx ncc build index.js
-          npx semantic-release
+          ncc build index.js
+          semantic-release
