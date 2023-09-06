@@ -57,7 +57,7 @@ module.exports = {
     [
       '@semantic-release/exec',
       {
-        prepareCmd: 'npm version ${nextRelease.version} --no-git-tag-version && npm run tsc',
+        prepareCmd: 'npm version ${nextRelease.version} --no-git-tag-version',
       },
     ],
     [
